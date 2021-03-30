@@ -1,3 +1,15 @@
+$(document).ready(function () {
+  $("form#word-counter").submit(function (event) {
+    event.preventDefault();
+    const passage = $("#text-passage").val();
+    const word = $("#word").val();
+    const wordCount = wordCounter(passage);
+    const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
+    $("#total-count").html(wordCount);
+    $("#selected-count").html(occurrencesOfWord);
+  });
+});
+
 // Business Logic
 function wordCounter(text) {
   if (text.trim().length === 0) {
@@ -20,6 +32,9 @@ function numberOfOccurrencesInText(word, text) {
   if (text.trim().length === 0) {
     return 0;
   }
+  if (word === "") {
+    return 0
+  }
   wordArray.forEach(function (element) {
     if (element.includes(word.toLowerCase())) {
       wordCount++;
@@ -27,14 +42,6 @@ function numberOfOccurrencesInText(word, text) {
   });
   return wordCount;
 }
-
-const text = "red RED Red";
-const word = "red";
-
-console.log(numberOfOccurrencesInText(word, text));
-
-
-const result = numberOfOccurrencesInText(word, text);
 
 function includesRarestLetter(word) {
   if (word.toLowerCase().includes("q")) {
