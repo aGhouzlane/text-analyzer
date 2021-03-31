@@ -87,6 +87,31 @@ const someText = "Hello zoinks and muppeteer";
 const test2 = omitBadwords(someText);
 console.log(test2);
 
+function boldSelectedWord(selectedWord, passage) {
+  if (selectedWord.trim().length === 0 || passage.trim().length === 0) {
+    return "";
+  }
+  let boldedWords = "";
+  let wordArray = passage.split(" ");
+  wordArray.forEach(function (word) {
+    if (word.includes(selectedWord)) {
+      const startIndex = word.indexOf(selectedWord);
+      const endIndex = startIndex + selectedWord.length;
+      boldedWords += word.slice(0, startIndex) + "<b>" + word.slice(startIndex, endIndex) + " " + "</b>" + word.slice(endIndex);
+    }
+    else {
+      boldedWords += word + " ";
+    }
+  });
+  return boldedWords;
+}
+
+// word = "bluegreen";
+// selectedWord = "green";
+// startIndex = word.indexOf(selectedWord) //4
+// endIndex = startIndex + selectedWord.length - 1;
+// boldedWords += word.slice(0,startIndex) + "<b>" + word.slice(startIndex, endIndex) + "</b>" + word.slice(endIndex)
+
 
 
 
